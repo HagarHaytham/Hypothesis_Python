@@ -1,0 +1,40 @@
+<CustButton@Button>:
+    font_size: 32
+    color: 0, 0, 1, 1
+    size: 80, 50
+    background_normal: ''
+    background_color: 1, 1, 1, 1
+    
+<CustomWidget>:
+    CustButton:
+        text: "cos"
+        pos: root.x, root.y
+            
+    CustButton:
+        text:   "sin"
+        pos:    200, root.y   
+            
+    CustButton:
+        text:   "tan"
+        pos:    400, root.y 
+        
+<CustButton@Button>:
+    font_size:  32
+    color:              0, 0, 1, 1
+    size:               80, 50
+    background_normal:  ''
+    background_color:   1, 1, 1, 1
+    size_hint: .1, .08
+    
+<FloatLayout>:
+    CustButton:
+        text: "cos"
+        pos_hint: {"x": .02, "y":.02}
+            
+    CustButton:
+        text:   "sin"
+        pos_hint: {"left": 1, "y":.2}
+            
+    CustButton:
+        text:   "tan"
+        pos_hint: {"left": 1, "y":.4}

@@ -1,0 +1,1307 @@
+#:import NoTransition kivy.uix.screenmanager.NoTransition
+#:import emj emoji
+
+ScreenManage:
+    transition: NoTransition()
+    MainScreen:
+    InEigScreen:
+    InLinScreen:
+    InNonScreen:
+    InODESHScreen:
+    InODESRScreen:
+    InODESRScreen:
+    InIpDiffScreen:
+    InCrvScreen:
+    InIntrpScreen:
+    InGausseIntegScreen:
+    InIntegScreen:
+    InRichScreen:
+    InRungScreen:
+    InPCScreen:
+    InEulerScreen:
+    InPDSScreen:
+    
+<MainScreen>:
+    name: "main"
+    GridLayout:
+        rows: 6
+        spacing: 10
+        padding:10 
+        Label:
+            text: "Dr. Amany, We Present You\nCMP 2020 Numerical Project"
+            font_size: 42
+            font_name: "Bigfish"
+            color: 0.6, 0, 1, 1 
+        BoxLayout:
+            Button:
+                text: "Eigen Value"
+                on_press: root.manager.current = "input"
+            Button:
+                text: "Curve Fitting"
+                on_press: root.manager.current = "curve"        
+            Button:
+                text: "Non Linear"
+                on_press: root.manager.current = "nonlinear"    
+        BoxLayout:
+            Button:
+                text: "Interpolation"
+                on_press: root.manager.current = "intrp"    
+            Button:
+                text: "Integration"
+                on_press: root.manager.current = "Integ"        
+            Button:
+                text: "Linear"
+                on_press: root.manager.current = "linear"        
+        BoxLayout:
+            Button:
+                text: "Interpolation-Differentiation" 
+                on_press: root.manager.current = "indiff"    
+            Button:
+                text: "Integration-Gauss"
+                on_press: root.manager.current = "GInteg"        
+            Button:
+                text: "Richardson's"
+                on_press: root.manager.current = "Richard"        
+        BoxLayout:
+            Button:
+                text: "ODE-Euler"
+                on_press: root.manager.current = "euler"    
+            Button:
+                text: "ODE-Runge Kutta"
+                on_press: root.manager.current = "runge"        
+            Button:
+                text: "ODE-Predictor Corrector"
+                on_press: root.manager.current = "pd"    
+        BoxLayout:
+            Button:
+                text: "System of ODE-Heun"
+                on_press: root.manager.current = "heunS"        
+            Button:
+                text: "System of ODE-Runge Kutta"
+                on_press: root.manager.current = "rungeS"        
+            Button:
+                text: "System of ODE-Predictor Corrector"
+                on_press: root.manager.current = "pdS" 
+     
+<InPDSScreen>:
+    name: "pdS"       
+    GridLayout:
+        rows: 8
+        BoxLayout:
+            size_hint: 1, .1
+            Button:
+                text: "<-"
+                size_hint: .1, 1
+                on_press: root.manager.current = "main"
+            Label: 
+                text: "System of Equations Predictor Corrector"
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                text: "n"
+            TextInput:
+                id: n
+                multiline: False
+        BoxLayout:
+            size_hint: 1, .1
+            orientation: 'horizontal'
+            Label:
+                size_hint: .2, 1
+                text: "x initial"
+            TextInput:
+                id: xie
+            Label:
+                size_hint: .2, 1
+                text: "x initial"
+            TextInput:
+                id: xim
+        BoxLayout:
+            size_hint: 1, .1
+            orientation: 'horizontal'
+            Label:
+                size_hint: .2, 1
+                text: "x final"
+            TextInput:
+                id: xfe
+            Label:
+                size_hint: .2, 1
+                text: "x final"
+            TextInput:
+                id: xfm
+        BoxLayout:
+            size_hint: 1, .1
+            orientation: 'horizontal'
+            Label:
+                size_hint: .2, 1
+                text: "h euler"
+            TextInput:
+                id: he
+            Label:
+                size_hint: .2, 1
+                text: "h miline"
+            TextInput:
+                id: hm
+        BoxLayout:
+            size_hint: 1, .1
+            orientation: 'horizontal'
+            Button:
+                text: "Solve Euler"
+                on_press: root.okEButton()
+            Button:
+                text: "Solve Miline"
+                on_press: root.okMButton()
+        CalcGrid:
+            id: calc
+        BoxLayout:
+            size_hint: 1, .2
+            orientation: 'horizontal'
+            Label:
+                text: "x out"
+            TextInput:
+                id: xoe
+                readonly: True
+            BoxLayout:
+                orientation: 'vertical'
+                BoxLayout:
+                    orientation: 'horizontal'
+                    Label:
+                        size_hint: .2, 1
+                        text: "iterations"
+                    TextInput:
+                        id: iter
+                        readonly: True
+                BoxLayout:
+                    orientation: 'vertical'
+                    BoxLayout:
+                        orientation: 'horizontal'
+                        Label:
+                            size_hint: .2, 1
+                            text: "Stopping Error"
+                        TextInput:
+                            id: err
+                            readonly: True
+            
+<InEulerScreen>:
+    name: "euler"
+    GridLayout:
+        rows: 5
+        BoxLayout:
+            size_hint: 1, .1
+            Button:
+                text: "<-"
+                size_hint: .1, 1
+                on_press: root.manager.current = "main"
+            Label: 
+                text: "Euler/Heun"
+        BoxLayout:
+            size_hint: 1, .2
+            orientation: 'horizontal'
+            BoxLayout:
+                orientation: 'vertical'
+                Label:
+                    size_hint: .2, 1
+                    text: "x0"
+                TextInput:
+                    id: xnod
+            BoxLayout:
+                orientation: 'vertical'
+                Label:
+                    size_hint: .2, 1
+                    text: "y0"
+                TextInput:
+                    id: ynod
+        BoxLayout:
+            size_hint: 1, .2
+            orientation: 'horizontal'
+            BoxLayout:
+                orientation: 'vertical'
+                Label:
+                    size_hint: .2, 1
+                    text: "x to Stop at"
+                TextInput:
+                    id: xf
+            BoxLayout:
+                orientation: 'vertical'
+                Label:
+                    size_hint: .2, 1
+                    text: "intervals"
+                TextInput:
+                    id: n
+            Button:
+                size_hint: .2, .5
+                text: "Euler"
+                on_press: root.okEButton()
+        BoxLayout: 
+            size_hint: 1, .1
+            Label:
+                size_hint: .2, 1
+                text: "Step Size"
+            TextInput:
+                id: h
+                multiline: False
+            Button:
+                size_hint: .2, 1
+                text: "Heun"
+                on_press: root.okHButton()
+        CalcGrid:
+            id: calc
+        
+<InPCScreen>:
+    name: "pd"
+    GridLayout:
+        rows: 10
+        BoxLayout:
+            size_hint: 1, .1
+            Button:
+                text: "<-"
+                size_hint: .1, 1
+                on_press: root.manager.current = "main"
+            Label: 
+                text: "Predictor Corrector"
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                size_hint: .2, 1
+                text: "X Points"
+            TextInput:
+                id: xs
+                multiline: False
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                size_hint: .2, 1
+                text: "Y Points"
+            TextInput:
+                id: ys
+                multiline: False    
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                size_hint: .2, 1
+                text: "x's to Solve for"
+            TextInput:
+                id: xsolv
+                multiline: False 
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                size_hint: .2, 1
+                text: "Error"
+            TextInput:
+                id: err
+                multiline: False
+        CalcGrid:
+            id: calc
+        BoxLayout:
+            size_hint: 1, .1
+            Button:
+                text: "Milne's"
+                on_press: root.okMButton() 
+            Button:
+                text: "AdamsBashforth"
+                on_press: root.okABButton() 
+            Button:
+                text: "AdamsMoulton"
+                on_press: root.okAMButton() 
+            Button:
+                text: "Adams"
+                on_press: root.okAButton() 
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                size_hint: .2, 1
+                text: "y's"
+            TextInput:
+                id: ysolv
+                readonly: True
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                size_hint: .2, 1
+                text: "Error in y's"
+            TextInput:
+                id: yerr
+                readonly: True
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                size_hint: .2, 1
+                text: "Approx. Error"
+            TextInput:
+                id: apperr
+                readonly: True
+        
+<InIntrpScreen>:
+    name: "intrp"
+    GridLayout:
+        rows:12
+        BoxLayout:
+            size_hint: 1, .6
+            Button:
+                text: "<-"
+                size_hint: .1, 1
+                on_press: root.manager.current = "main"
+            Label: 
+                text: "Interpolation"
+        BoxLayout:
+            size_hint: 1, .8
+            Label:
+                size_hint: .2, 1
+                text: "X Points"
+            TextInput:
+                id: xs
+                multiline: False
+        BoxLayout:
+            size_hint: 1, .8
+            Label:
+                size_hint: .2, 1
+                text: "Y Points"
+            TextInput:
+                id: ys
+                multiline: False
+        BoxLayout:
+            size_hint: 1, .8
+            Label:
+                size_hint: .2, 1
+                text: "x0"
+            TextInput:
+                id: xval
+                multiline: False
+        BoxLayout:
+            size_hint: 1, .8
+            Label:
+                size_hint: .2, 1
+                text: "Digits"
+            TextInput:
+                id: digits
+                multiline: False
+        BoxLayout:
+            size_hint: 1, .8
+            Label:
+                text: ""
+            Button:
+                size_hint: .1, 1
+                text: "Lagrange"
+                on_press: root.okLButton()
+        BoxLayout:
+            size_hint: 1, .8
+            Label:
+                size_hint: .2, 1
+                text: "Order"
+            TextInput:
+                id: order
+                multiline: False
+        BoxLayout:
+            size_hint: 1, .8
+            Label:
+                size_hint: .2, 1
+                text: "Error"
+            TextInput:
+                id: err
+                multiline: False
+        BoxLayout:
+            size_hint: 1, .8
+            Label:
+                text: ""
+            Button:
+                size_hint: .1, 1
+                text: "Newton"
+                on_press: root.okNButton()
+        BoxLayout:
+            Label:
+                size_hint: .2, 1
+                text: "Function"
+            TextInput:
+                id: func
+                readonly: True
+        BoxLayout:
+            size_hint: 1, .8
+            Label:
+                size_hint: .2, 1
+                text: "Value at x0"
+            TextInput:
+                id: fval
+                readonly: True
+        BoxLayout:
+            size_hint: 1, .8
+            Label:
+                size_hint: .2, 1
+                text: "Error Newton"
+            TextInput:
+                id: errn
+                readonly: True
+<InRungScreen>:
+    name: "runge"
+    GridLayout:
+        rows: 7
+        BoxLayout:
+            size_hint: 1, .08
+            Button:
+                text: "<-"
+                size_hint: .1, 1
+                on_press: root.manager.current = "main"    
+            Label: 
+                text: "Runge"  
+        BoxLayout:
+            size_hint: 1, .08
+            orientation: 'horizontal'
+            Label:
+                size_hint: .2, 1
+                text: "x0"
+            TextInput:
+                id: xnodval
+            Label:
+                size_hint: .2, 1
+                text: "y0"
+            TextInput:
+                id: ynodval
+            Label:
+                size_hint: .2, 1
+                text: "x"
+            TextInput:
+                id: xval
+            Label:
+                size_hint: .2, 1
+                text: "h"
+            TextInput:
+                id: hval
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                size_hint: .2, 1
+                text: "Function"
+            TextInput:
+                id: func
+                readonly: True
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                size_hint: .2, 1
+                text: "Equation"
+            TextInput:
+                id: equ
+                readonly: True
+        CalcGrid:
+            size_hint: 1, .9
+            id: calc
+        BoxLayout:
+            size_hint: 1, .06
+            Label:
+                text: ""
+            Button:
+                size_hint: .1, 1
+                text: "ok"
+                on_press: root.okButton()
+        BoxLayout:
+            size_hint: 1, .1
+            orientation: 'horizontal'
+            BoxLayout:
+                orientation: 'vertical'
+                Label:
+                    size_hint: .2, 1
+                    text: "y Approx."
+                TextInput:
+                    id: yapp
+                    readonly: True
+            BoxLayout:
+                orientation: 'vertical'
+                Label:
+                    size_hint: .2, 1
+                    text: "Error"
+                TextInput:
+                    id: err
+                    readonly: True
+            
+<InLinScreen>:
+    name: "linear"
+    GridLayout:
+        rows: 10
+        BoxLayout:
+            size_hint: 1, .1
+            Button:
+                text: "<-"
+                size_hint: .1, 1
+                on_press: root.manager.current = "main"    
+            Label: 
+                text: "Linear"
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                text: "Error"
+            TextInput:
+                id: err
+                multiline: False    
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                text: "Matrix A"    
+            Label:
+                size_hint: .2, 1
+                text: "Vector b"    
+            Label:
+                size_hint: .2, 1
+                text: "Initial Vector"    
+            Label:
+                size_hint: .2, 1
+                text: ""    
+        BoxLayout:
+            size_hint: 1, .7
+            TextInput:
+                id: mat    
+            TextInput:
+                size_hint: .2, 1
+                id: vecb    
+            TextInput:
+                size_hint: .2, 1
+                id: initvec    
+            Button:
+                size_hint: .2, .1
+                text: "ok"
+                on_press: root.okGButton()    
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                text: "SOR"    
+        BoxLayout:
+            size_hint: 1, .1
+            Label: 
+                text: "\u03C9"    
+            TextInput:
+                id: omega
+                multiline: False    
+            Button:
+                text: "ok"
+                on_press: root.okSButton()    
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                text:"answer"
+        BoxLayout:
+            size_hint: 1, .7  
+            TextInput:
+                id: ans
+                readonly: True
+        BoxLayout:
+            size_hint: 1, .1        
+            Label:
+                text:"error"
+        BoxLayout:
+            size_hint: 1, .1       
+            TextInput:
+                id: errAns
+                readonly: True
+                
+<InODESHScreen>:
+    name: "heunS"
+    GridLayout:
+        clos: 1
+        rows: 7
+        BoxLayout:
+            size_hint: 1, .1
+            Button:
+                text: "<-"
+                size_hint: .1, 1
+                on_press: root.manager.current = "main"
+            Label:
+                text: "System Heun" 
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                text: "n" 
+            TextInput:
+                id: nequ
+                multiline: False 
+            Label:
+                text: "Step" 
+            TextInput:
+                id: step
+                multiline: False 
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                text: "Error" 
+            TextInput:
+                id: err
+                multiline: False
+            Label:
+                text: "Iterations" 
+            TextInput:
+                id: iter
+                multiline: False 
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                size_hint: .2, 1
+                text: "Initial Values" 
+            TextInput:
+                id: initvec
+                multiline: False 
+        CalcGrid:
+            id: calc
+        BoxLayout:
+            size_hint: 1, .08
+            Label:
+            Button:
+                size_hint: .1, 1 
+                text: "ok"
+                on_press: root.okButton()
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                size_hint: .2, 1
+                text: "Vals"
+            TextInput:
+                id: sol
+                readonly: True
+                
+<InODESRScreen>:
+    name: "rungeS"
+    GridLayout:
+        clos: 1
+        rows: 7
+        BoxLayout:
+            size_hint: 1, .1
+            Button:
+                text: "<-"
+                size_hint: .1, 1
+                on_press: root.manager.current = "main"
+            Label:
+                text: "System Runge"
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                text: "n"
+            TextInput:
+                id: nequ
+                multiline: False
+            Label:
+                text: "Step"
+            TextInput:
+                id: step
+                multiline: False
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                text: "Error"
+            TextInput:
+                id: err
+                multiline: False
+            Label:
+                text: "Iterations"
+            TextInput:
+                id: iter
+                multiline: False
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                size_hint: .2, 1
+                text: "Initial Values"
+            TextInput:
+                id: initvec
+                multiline: False
+        CalcGrid:
+            id: calc
+        BoxLayout:
+            size_hint: 1, .08
+            Label:
+            Button:
+                size_hint: .1, 1
+                text: "ok"
+                on_press: root.okButton()
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                size_hint: .2, 1
+                text: "Vals"
+            TextInput:
+                id: sol
+                readonly: True
+
+<InRichScreen>:
+    name: "Richard"
+    GridLayout:
+        cols: 1
+        rows: 9
+        BoxLayout:
+            size_hint: 1, .1
+            Button:
+                text: "<-"
+                size_hint: .1, 1
+                on_press: root.manager.current = "main"
+            Label: 
+                text: "Richardson's"
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                text: "Order Of h"
+            TextInput:
+                id: order
+                multiline: False
+            Label:
+                text: "Calculate at X"
+            TextInput:
+                id: atX
+                multiline: False
+            Label:
+                text: "Number of inputs"
+            TextInput:
+                id: n
+                multiline: False                
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                size_hint: 1, .1
+                text: "X"
+            TextInput:
+                id: X
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                text: "Y"
+            TextInput:
+                id: Y
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                text:""
+            Button:
+                text: "ok"
+                on_press: root.okTButton()
+            Label:
+                text:""                 
+        CalcGrid:
+            id: calc        
+        BoxLayout:
+            size_hint: 1, .1
+            Label: 
+                text: "h"
+            TextInput:
+                id: h
+                multiline: False
+            Button:
+                text: "ok"
+                on_press: root.okFuncButton()
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                text:"answer"
+            TextInput:
+                id: ans
+                readonly: True                
+                               
+<InIpDiffScreen>:
+    name: "indiff"
+    GridLayout:
+        clos: 1
+        rows: 8
+        BoxLayout:
+            size_hint: 1, .3
+            Button:
+                text: "<-"
+                size_hint: .1, 1
+                on_press: root.manager.current = "main"
+            Label:
+                text: "Interpolation-Differentiation"
+        BoxLayout:
+            Label:
+                text: "X's"
+            TextInput:
+                id: xs
+                multiline: False
+        BoxLayout:
+            Label:
+                text: "Y's"
+            TextInput:
+                id: ys
+                multiline: False
+        BoxLayout:
+            Label:
+                text: "solve for"
+            TextInput:
+                id: x
+                multiline: False
+        BoxLayout:
+            Label:
+                text: "Order of Approximation"
+            TextInput:
+                id: app
+                multiline: False
+        BoxLayout:
+            Label:
+                text: "Error"
+            TextInput:
+                id: err
+                multiline: False
+        BoxLayout:
+            size_hint: 1, .3
+            Label:
+            Button:
+                size_hint: .1, 1
+                text: "ok"
+                on_press: root.okButton()
+        BoxLayout:
+            Label:
+                text:"answer"
+            TextInput:
+                id: ans
+                readonly: True
+            Label:
+                text:"error"
+            TextInput:
+                id: errAns
+                readonly: True
+        
+<CalcGrid@GridLayout>:
+    rows: 12
+    spacing: 5
+    padding: 5
+    BoxLayout:
+        TextInput:
+            id: entry
+            multiline: False
+    BoxLayout:
+        Button:
+            text: "^"
+            on_press: entry.text += '**'
+        Button:
+            text: "\u221A"
+            on_press: entry.text += 'sqrt('
+        Button:
+            text: "e"
+            on_press: entry.text += self.text
+        Button:
+            text: "AC"
+            on_press: entry.text = ""
+    BoxLayout:
+        Button:
+            text: "log"
+            on_press: entry.text += self.text + '('
+        Button:
+            text: "ln"
+            on_press: entry.text += self.text + '('
+        Button:
+            text: "("
+            on_press: entry.text += self.text
+        Button:
+            text: ")"
+            on_press: entry.text += self.text
+    BoxLayout:
+        Button:
+            text: "sin"
+            on_press: entry.text += self.text + '('
+        Button:
+            text: "cos"
+            on_press: entry.text += self.text + '('
+        Button:
+            text: "tan"
+            on_press: entry.text += self.text + '('
+        Button:
+            text: "x"
+            on_press: entry.text += self.text
+    BoxLayout:
+        Button:
+            text: "sin^-1"
+            on_press: entry.text += 'asin('
+        Button:
+            text: "cos^-1"
+            on_press: entry.text += 'acos('
+        Button:
+            text: "tan^-1"
+            on_press: entry.text += 'atan('
+        Button:
+            text: "y"
+            on_press: entry.text += self.text            
+    BoxLayout:
+        Button:
+            text: "sinh"
+            on_press: entry.text += self.text + '('
+        Button:
+            text: "cosh"
+            on_press: entry.text += self.text + '('
+        Button:
+            text: "tanh"
+            on_press: entry.text += self.text + '('
+        Button:
+            text: "z"
+            on_press: entry.text += self.text
+    BoxLayout:
+        Button:
+            text: "sinh^-1"
+            on_press: entry.text += 'asinh('
+        Button:
+            text: "cosh^-1"
+            on_press: entry.text += 'acosh('
+        Button:
+            text: "tanh^-1"
+            on_press: entry.text += 'atanh('
+        Button:
+            text: "w"
+            on_press: entry.text += self.text
+    BoxLayout:
+        Button:
+            text: "1"
+            on_press: entry.text += self.text
+        Button:
+            text: "2"
+            on_press: entry.text += self.text
+        Button:
+            text: "3"
+            on_press: entry.text += self.text
+        Button:
+            text: "*"
+            on_press: entry.text += self.text
+    BoxLayout:
+        Button:
+            text: "4"
+            on_press: entry.text += self.text
+        Button:
+            text: "5"
+            on_press: entry.text += self.text
+        Button:
+            text: "6"
+            on_press: entry.text += self.text
+        Button:
+            text: "/"
+            on_press: entry.text += self.text
+    BoxLayout:
+        Button:
+            text: "7"
+            on_press: entry.text += self.text
+        Button:
+            text: "8"
+            on_press: entry.text += self.text
+        Button:
+            text: "9"
+            on_press: entry.text += self.text
+        Button:
+            text: "+"
+            on_press: entry.text += self.text
+    BoxLayout:
+        Button:
+            text: "."
+            on_press: entry.text += self.text
+        Button:
+            text: "0"
+            on_press: entry.text += self.text
+        Button:
+            text:"-"
+            on_press: entry.text += self.text
+            
+            
+<InEigScreen>:
+    name: "input"
+    GridLayout:
+        rows:7
+        BoxLayout:
+            size_hint: 1, .1
+            Button:
+                text: "<-"
+                size_hint: .1, 1
+                on_press: root.manager.current = "main"
+            Label:
+                text: "Eigen Value"
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                text: "n"
+            TextInput:
+                id: matn
+                multiline: False
+        BoxLayout:
+            size_hint: 1, .1
+            Label: 
+                text: "Iterations"
+            TextInput:
+                id: iter
+                multiline: False
+            Label:
+                text: "Error"
+            TextInput:
+                id: err
+                multiline: False
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                text: "Matrix A"
+            Label:
+                size_hint: .2, 1
+                text: "Initial Vec"
+        BoxLayout:
+            size_hint: 1, .6
+            TextInput:
+                id: mat
+            TextInput:
+                size_hint: .2, 1
+                id: initial_vec        
+        BoxLayout:
+            size_hint: 1, .1
+            Button:
+                text: "\u03BB" + " min"
+                on_press: root.lamdaMinButton()
+            Button:
+                text: "\u03BB" + " max"
+                on_press: root.lamdaMaxButton()
+            Button:
+                text: "B"
+                on_press: root.defButton()
+        BoxLayout:
+            size_hint: 1, .7
+            orientation: 'horizontal'
+            BoxLayout:
+                orientation: 'vertical'
+                BoxLayout:
+                    size_hint: 1, .2
+                    Label:
+                        text: "\u03BB" + " min"
+                    TextInput:
+                        id: lmin
+                        multiline: False
+                    Label:
+                        text: "\u03BB" + " max"
+                    TextInput:
+                        id: lmax
+                        multiline: False
+                BoxLayout:
+                    Label:
+                        text: "Eigen Vec"
+                    TextInput:
+                        id: vecmin
+                    Label:
+                        text: "Eigen Vec"
+                    TextInput:
+                        id: vecmax
+                BoxLayout:
+                    size_hint: 1, .2
+                    Label:
+                        text: "Error in Min"
+                    TextInput:
+                        id: errmin
+                        multiline: False
+                    Label:
+                        text: "Error in Max"
+                    TextInput:
+                        id: errmax
+                        multiline: False
+            BoxLayout:
+                orientation: 'vertical'
+                BoxLayout:
+                    Label:
+                        size_hint: .2, 1
+                        text: "B"
+                    TextInput:
+                        id: deflate
+                BoxLayout:
+                    size_hint: 1, .2
+                    Label:
+                        text: "Error in Deflated"
+                    TextInput:
+                        id: errb
+                        multiline: False
+                        
+<InCrvScreen>:
+    name: "curve"
+    GridLayout:
+        rows: 11
+        BoxLayout:
+            size_hint: 1, .6
+            
+            Button:
+                text: "<-"
+                size_hint: .1, 1
+                on_press: root.manager.current = "main"
+                
+            Label: 
+                text: "Curve Fitting"
+        Label:
+            text: "X Points"
+        TextInput:
+            id: xs
+            multiline: False
+        Label:
+            text: "Y Points"
+        TextInput:
+            id: ys
+            multiline: False
+        Label:
+            text: "Degree"
+        TextInput:
+            id: deg
+            multiline: False
+        Label:
+            text: "Coefficients"
+        TextInput:
+            id: coff
+            multiline: False
+        Label:
+            text: ""
+        Button:
+            size_hint: .1, 1
+            text: "ok"
+            on_press: root.okButton()
+            
+<InNonScreen>:
+    name: "nonlinear"
+    GridLayout:
+        cols: 1
+        rows: 9
+        BoxLayout:
+            size_hint: 1, .1
+            Button:
+                text: "<-"
+                size_hint: .1, 1
+                on_press: root.manager.current = "main"
+            Label:
+                text: "Non-Linear"    
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                text: "n"    
+            TextInput:
+                id: nequ
+                multiline: False    
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                text: "Error"
+            TextInput:
+                id: err
+                multiline: False    
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                text: "Initial Values"    
+        BoxLayout:
+            size_hint: 1, .1
+            TextInput:
+                id: initval    
+        CalcGrid:
+            id: calc
+        BoxLayout:
+            size_hint: 1, .08
+            Label:
+            Button:
+                size_hint: .1, 1    
+                text: "ok"
+                on_press: root.okButton()
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                size_hint: .1, 1
+                text: "Variables"
+            TextInput:
+                id: vals
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                size_hint: .1, 1
+                text: "Errors"
+            TextInput:
+                id: errs  
+                     
+<InGausseIntegScreen>:
+    name: "GInteg"
+    GridLayout:
+        cols:1
+        rows:6
+        BoxLayout:
+            size_hint: 1, .1
+            Button:
+                text: "<-"
+                size_hint: .1, 1
+                on_press: root.manager.current = "main"
+            Label:
+                text: "Gaussian Integration"        
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                text:"n"
+            TextInput:
+                id: nPoints    
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                text:"first limit"
+            TextInput:
+                id: fLimit
+            Label:
+                text:"second limit"
+            TextInput:
+                id: sLimit
+        CalcGrid:
+            id: calc
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                text:""
+            Button:
+                text: "ok"
+                on_press: root.okButton()
+            Label:
+                text:""
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                text:"answer"
+            TextInput:
+                id: ans
+                readonly: True
+              
+<InIntegScreen>:
+    name: "Integ"
+    GridLayout:
+        rows:7
+        BoxLayout:
+            size_hint: 1, .1
+            Button:
+                text: "<-"
+                size_hint: .1, 1
+                on_press: root.manager.current = "main"
+            Label:
+                text: "Integration"
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                text:"n"
+            TextInput:
+                id: nPoints    
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                text:"first limit"
+            TextInput:
+                id: fLimit
+            Label:
+                text:"second limit"
+            TextInput:
+                id: sLimit
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                text:"table"
+            TextInput:
+                id: table
+        CalcGrid:
+            id: calc
+        BoxLayout:
+            size_hint: 1, .1
+            Button:
+                text: "Trapezoidal"
+                on_press: root.okTButton()
+            Button:
+                text: "1/3 simpson"
+                on_press: root.okOTSButton()
+            Button:
+                text: "3/8 simpson"
+                on_press: root.okTESButton()
+        BoxLayout:
+            size_hint: 1, .1
+            Label:
+                text:"answer"
+            TextInput:
+                id: ans
+                readonly: True
+            Label:
+                text:"error"
+            TextInput:
+                id: err
+                readonly: True
