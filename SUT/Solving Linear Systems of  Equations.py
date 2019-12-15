@@ -1,24 +1,8 @@
-'''
-Gauss Seidel :
-Number of Inputs (4) : 
-- (Ax = b) A matrix of coffecients,
-- b vector ,
-- initial vector, 
-- espilon(stopping criteria)
-Number of outputs (2) :
-- solution(vector) ,
-- approximate error.
-SOR :
-Number of Inputs(5)  : 
-- A matrix of coffecients, 
-- b vector , 
-- initial vector, 
-- omega ,
-- espilon(stopping criteria)
-Number of outputs (2) :
-- solution(vector) ,
-- approximate error.
-'''
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[3]:
+
 
 import numpy as np
 
@@ -53,7 +37,7 @@ def CheckDiagDominant(mat):
     return flag
 
 #uses CheckDiagDominant and Permutation to get A diagonally dominant matrix.
-def MakeItDiagDominant(mat):
+def MakeItDiagDominant(mat,vec):
     m,n = mat.shape
     if(m != n):
         print("Error : Not A Square Matrix.")
@@ -67,19 +51,22 @@ def MakeItDiagDominant(mat):
     
     w = len(per)
     temp = np.empty([n,m])
+    tempvec = np.zeros([n,1])
     for i in range(w):
         for j in range(n):
             temp[j] = mat[per[i][j]]
+            tempvec[j] = vec[per[i][j]] 
         if(CheckDiagDominant(temp)):
-            return temp
+
+            return temp,tempvec
             flag = False
             break
         if (not (flag)):
             break
-    return mat
+    return mat,vec
 
 
-# In[61]:
+# In[4]:
 
 
 # solving a linear system of equations using gauss seidel.
@@ -155,15 +142,24 @@ def SolveSOR(mat,vec,init,omega,epsilon):
 
 
 
-# In[64]:
+
+# In[5]:
 
 
 #TESTING.
-# mat = np.array([[9,2,1],[1,7,3],[1,1,8]])
-# vec = np.array([12,11,11])
+mat = np.array([[2.0,-6.0,-1.0],[-3.0,-1.0,7.0],[-8.0,1.0,-2.0]])
+vec = np.array([-38.0,-34.0,-20.0])
 
-# epsilon = 0.1
-# init= np.array([1.2,1.2,1.2])
-# result,error= SolveSOR(mat,vec,init,1.0,epsilon)
-# print(result)
-# print(error)
+epsilon = 0.05
+init= np.array([0.0,0.0,0.0])
+result,error= SolveSOR(mat,vec,init,1.2,epsilon)
+print("result :")
+print(result)
+print(error)
+
+
+# In[ ]:
+
+
+
+
