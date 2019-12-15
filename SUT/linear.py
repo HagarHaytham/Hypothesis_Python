@@ -155,11 +155,11 @@ def SolveSOR(mat,vec,init,omega,epsilon):
 
 
 #TESTING.
-mat = np.array([[9,2,1],[1,7,3],[1,1,8]])
-vec = np.array([12,11,11])
+# mat = np.array([[9,2,1],[1,7,3],[1,1,8]])
+# vec = np.array([12,11,11])
 
-epsilon = 0.1
-init= np.array([1.2,1.2,1.2])
-result,error= SolveSOR(mat,vec,init,1.0,epsilon)
-print(result)
-print(error)
+# epsilon = 0.1
+# init= np.array([1.2,1.2,1.2])
+# result,error= SolveSOR(mat,vec,init,1.0,epsilon)
+# print(result)
+# print(error)
