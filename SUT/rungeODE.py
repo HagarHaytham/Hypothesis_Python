@@ -34,6 +34,7 @@ class Runge_kutte:
         x += (self.h)/2.00000000
         y = self.y0 + (self.k3 * self.h)
         self.k4 = eval(self.function)
+        
     def calculate(self):
         if self.ye != 0:
             self.error = abs((self.ye - self.ya)/self.ye) * 100.0
