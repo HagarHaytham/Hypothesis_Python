@@ -56,7 +56,7 @@ def CheckDiagDominant(mat):
 def MakeItDiagDominant(mat):
     m,n = mat.shape
     if(m != n):
-        print("Error : Not A Square Matrix.")
+        #print("Error : Not A Square Matrix.")
         return mat
     lst = []
     for i in range(n):
@@ -89,16 +89,16 @@ def MakeItDiagDominant(mat):
 #epsilon : stopping criteria.
 def SolveGaussSeidel(mat,vec,init,epsilon):
     error = np.zeros([mat.shape[0],1],dtype='float64')
-    print(error.shape)
+    #print(error.shape)
     prev = np.copy(init)
-    ddmat,vec = MakeItDiagDominant(mat,vec)
-    print(ddmat)
-    print(vec)
+    ddmat = MakeItDiagDominant(mat)
+    #print(ddmat)
+    #print(vec)
     #TODO : Add the Relation.
     # the Relation is R[i] = (v[i] - sigma(R[j]*A[j,j]))/A[i,i]
     # where A is the coeffecients matrix, v is the result vector and R is the solution vector
     maxError =  10000
-    n = 5
+    n = 100
     while(n>0 and maxError >epsilon) :
         for i in range(mat.shape[0]):
             x = vec[i]
@@ -107,14 +107,14 @@ def SolveGaussSeidel(mat,vec,init,epsilon):
             x+= init[i]*ddmat[i,i]
             x /= ddmat[i,i]
             init[i] = x
-            print(x)
+            #print(x)
             error[i] = abs((init[i]-prev[i])/init[i]).astype('float64')
         n -=1
-        print(error)    
+        #print(error)    
         maxError = max(error)
         prev = np.copy(init)
-        print(init)
-        print(maxError)
+        #print(init)
+        #print(maxError)
     return init,maxError
 
 # solving a linear system of equations using successive over relaxation.
@@ -127,16 +127,16 @@ def SolveSOR(mat,vec,init,omega,epsilon):
     error = np.zeros(mat.shape[0])
     prev = np.copy(init)
 
-    ddmat,vec = MakeItDiagDominant(mat,vec)
+    ddmat= MakeItDiagDominant(mat)
     myvec=vec.copy()
-    n = 6
+    n = 100
     maxError = 10000
     #TODO : Add the Relation.
     # the Relation is R[i] = (v[i] - sigma(R[j]*A[j,j]))/A[i,i]
     # where A is the coeffecients matrix, v is the result vector and R is the solution vector
     while(n>0 and maxError > epsilon):
         for i in range(mat.shape[0]):
-            print(vec)
+            #print(vec)
             x = vec[i].copy()
             for j in range(mat.shape[1]):
                 x -= (init[j]*ddmat[i,j])
@@ -144,7 +144,7 @@ def SolveSOR(mat,vec,init,omega,epsilon):
             x*= omega
             x /= ddmat[i,i]
             x += (1-omega)*init[i]
-            print(x)
+            #print(x)
             init[i] = x
             error[i] = abs((init[i]-prev[i])/init[i]).astype(float)
         n -=1
