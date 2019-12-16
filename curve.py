@@ -32,14 +32,15 @@ def fun(x):
 def fun1(x):
     return x ** 4 + x ** 3 + x ** 2 + x  ** 1 +6565656
 
-x=[1,2,3,4,5]
-y=[1 + 3,8 + 3,27 + 3,64 + 3,125 + 3]
-print(curve_fitting(x,y,degree=9))
+if __name__ =="__main__":
+    x=[1,2,3,4,5]
+    y=[1 + 3,8 + 3,27 + 3,64 + 3,125 + 3]
+    print(curve_fitting(x,y,degree=9))
 
-x = list(range(100))
-y = list(map(fun, x))
-print(curve_fitting(x,y,degree=4))
+    x = list(range(100))
+    y = list(map(fun, x))
+    print(curve_fitting(x,y,degree=4))
 
-x = list(range(100))
-y = list(map(fun1, x))
-print(curve_fitting(x,y,degree=4))
+    x = list(range(100))
+    y = list(map(fun1, x))
+    print(curve_fitting(x,y,degree=4))
