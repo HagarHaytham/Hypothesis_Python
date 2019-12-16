@@ -14,6 +14,9 @@ def curve_fitting(x,y,degree=1):
     if(degree > x.shape[0]):
         print("inputs values not enough for degree")
         return 0
+    elif(degree < np.linalg.matrix_rank(np.dot(x,x.T))):
+        print("singular.")
+        return 0
     powers=np.ones([x.shape[0],degree+1])
     help_vectors=np.array([range(0,degree+1)])
     powers=(powers*help_vectors).T
@@ -32,14 +35,15 @@ def fun(x):
 def fun1(x):
     return x ** 4 + x ** 3 + x ** 2 + x  ** 1 +6565656
 
-x=[1,2,3,4,5]
-y=[1 + 3,8 + 3,27 + 3,64 + 3,125 + 3]
-print(curve_fitting(x,y,degree=9))
+if __name__ =="__main__":
+    x=[1,2,3,4,5]
+    y=[1 + 3,8 + 3,27 + 3,64 + 3,125 + 3]
+    print(curve_fitting(x,y,degree=9))
 
-x = list(range(100))
-y = list(map(fun, x))
-print(curve_fitting(x,y,degree=4))
+    x = list(range(100))
+    y = list(map(fun, x))
+    print(curve_fitting(x,y,degree=4))
 
-x = list(range(100))
-y = list(map(fun1, x))
-print(curve_fitting(x,y,degree=4))
+    x = list(range(100))
+    y = list(map(fun1, x))
+    print(curve_fitting(x,y,degree=4))
