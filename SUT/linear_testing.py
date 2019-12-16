@@ -28,7 +28,7 @@ def test_SolveGaussSeidel(l,x):
 
 
 
-@given( l= hnp.arrays(np.integer, (3,3), elements=st.integers(1,10),unique= True), x =hnp.arrays(np.integer, (3,1), elements=st.integers(1,10),unique = True))
+@given( l= hnp.arrays(np.integer, (3,3), elements=st.integers(1,10),unique= True), x =hnp.arrays(np.integer, (3,1), elements=st.integers(1,10),unique = True), omega )
 def test_SolveSOR(l,x):
     # assume(np.linalg.matrix_rank(l) == 3)
     # sln1 = np.linalg.solve(l,x)
