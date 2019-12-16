@@ -14,6 +14,9 @@ def curve_fitting(x,y,degree=1):
     if(degree > x.shape[0]):
         print("inputs values not enough for degree")
         return 0
+    elif(degree < np.linalg.matrix_rank(np.dot(x,x.T))):
+        print("singular.")
+        return 0
     powers=np.ones([x.shape[0],degree+1])
     help_vectors=np.array([range(0,degree+1)])
     powers=(powers*help_vectors).T
