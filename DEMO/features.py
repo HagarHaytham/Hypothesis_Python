@@ -1,5 +1,6 @@
 from hypothesis import strategies as st
 from hypothesis import given,example,assume
+import pytest
 
 
 #applying the concept of property based testing.
@@ -47,11 +48,16 @@ def test_encode_decode(s):
 @given(st.lists(st.integers(1,1000)))
 def test_sum_is_positive(xs):
     assume(len(xs)>0)
-    assert sum(xs) > 0    
+    assert sum(xs) > 0
 
+from hypothesis import given, strategies as st
+@given(st.integers())
+def test_integers(i):
+    pass
 #RUNNING TESTS.
 if __name__ == "__main__":
-    # test_add()
-    # test_encode_decode()
-    # test_sum_is_positive()
+    test_integers()
+#     # test_add()
+#     # test_encode_decode()
+#     # test_sum_is_positive()
 

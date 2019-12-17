@@ -16,9 +16,9 @@ def generate_list(draw):
 
 
     Ys = draw(st.lists(st.decimals(0,10,places=2), min_size=4, max_size=4, unique=True).map(sorted))
+    new_x = draw(st.floats(min(Xs),max(Xs)))
     Xs = [float(i) for i in Xs]
     Ys = [float(i) for i in Ys]
-    new_x = draw(st.floats(min(Xs),max(Xs)))
     return Xs, Ys, new_x
 
 @given(l =generate_list()) 

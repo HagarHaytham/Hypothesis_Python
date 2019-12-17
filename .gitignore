@@ -1,3 +1,5 @@
-
-SUT/__pycache__/*
-SUT/.hypothesis/*
+__pycache__/*
+.ipynb_checkpoints/
+SUT/.hypothesis/
+SUT/.pytest_cache/
+SUT/__pycache__/
