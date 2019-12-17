@@ -1,4 +1,4 @@
-from hypothesis import given , assume , settings
+from hypothesis import given , assume , settings ,note
 import hypothesis.strategies as st
 import numpy as np
 import sympy
@@ -50,7 +50,8 @@ def test_Euler(data):
     # print(exp,initial_x,initial_y,final_x,intervals)
     # print(len(y1),len(y2))
     for i in range(len(y2)):
-        print(y2[i][0] , y1[i])
+        note("numpy sol %r"% y2[i][0])
+        note("app solution %r"%  y1[i])
         assert y2[i][0] == y1[i]
        
     
