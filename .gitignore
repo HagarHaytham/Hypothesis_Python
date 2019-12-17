@@ -3,3 +3,5 @@ __pycache__/*
 SUT/.hypothesis/
 SUT/.pytest_cache/
 SUT/__pycache__/
+SUT/tested/__pycache__/
+SUT/tested/.hypothesis/
