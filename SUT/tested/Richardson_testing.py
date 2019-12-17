@@ -1,4 +1,4 @@
-from hypothesis import given,assume
+from hypothesis import given,assume,note
 import hypothesis.extra.numpy as hnp
 import hypothesis.strategies as st
 import numpy as np
@@ -24,7 +24,12 @@ def test_Rich(dx,y):
     idx = random.randint(0,len(x)-1)
     _,actual=Rich(x[idx],table)
     expected=integrate.romb(y,dx)
-    print(actual,expected)
+    
+    note (actual)
+    note(expected)
+
+    
+
     assert actual == expected
     # print(type(table))
     # pass    

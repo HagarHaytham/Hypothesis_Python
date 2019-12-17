@@ -30,9 +30,9 @@ def fun1(x):
 # HealthCheck.filter_too_much,
 @settings(suppress_health_check=(HealthCheck.filter_too_much,HealthCheck.too_slow,))
 @given(m=hnp.arrays(np.integer,hnp.array_shapes(min_dims=2,max_dims=2,min_side=2, max_side=10),elements=st.integers(1,100),unique=True))
-# @example([])
 def test_curve_fitting(m):
     assume(m.shape[0]==2) # i want 2 vectors only
+   
     # assume(np.linalg.matrix_rank(np.dot(m[0],m[0].T)) == m.shape[1] )
     # print(x)
     x = m[0]
