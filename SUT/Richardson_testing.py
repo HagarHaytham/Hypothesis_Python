@@ -8,7 +8,7 @@ from Richardson import Rich
 
 # global i
 # @given(m=hnp.arrays(np.integer,hnp.array_shapes(min_dims=2,max_dims=2,min_side=2, max_side=5),elements=st.integers(1,100),unique=True))
-@given(dx=st.floats(0.5,2),y =hnp.arrays(np.float,st.integers(5,10),elements=st.floats(1,6),unique=True))
+@given(dx=st.floats(0.5,2),y =hnp.arrays(np.float,st.integers(9,9),elements=st.floats(1,6),unique=True))
 def test_Rich(dx,y):
 
     # assume(m.shape[0]==2) # i want 2 vectors only
@@ -24,8 +24,8 @@ def test_Rich(dx,y):
     idx = random.randint(0,len(x)-1)
     _,actual=Rich(x[idx],table)
     expected=integrate.romb(y,dx)
+    print(actual,expected)
     assert actual == expected
-    i+=1
     # print(type(table))
     # pass    
 if __name__=="__main__":
