@@ -1,4 +1,4 @@
-from hypothesis import given, assume,seed,settings,HealthCheck
+from hypothesis import given, assume,seed,settings,HealthCheck,note
 import hypothesis.strategies as st
 import hypothesis.extra.numpy as hnp
 import numpy as np
@@ -42,6 +42,12 @@ def test_curve_fitting(m):
     # k=np.matmul(np.dot(x,x.T), y) # k has to be singular
     print(x)
     actual = curve_fitting(x,y,deg)
+    
+    expected = 0
+
+    note(expected)
+    note(actual)
+
     # assume(np.linalg.matrix_rank(k) == deg )
     if np.linalg.matrix_rank(k) == deg:    
         expected =np.polyfit(x, y, deg)
@@ -61,3 +67,4 @@ def test_curve_fitting(m):
 
 
 test_curve_fitting()
+
