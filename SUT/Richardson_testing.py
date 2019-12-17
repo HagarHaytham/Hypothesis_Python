@@ -22,7 +22,7 @@ def test_Rich(dx,y):
     table = [x,y]
     # print(table)
     idx = random.randint(0,len(x)-1)
-    actual=Rich(x[idx],table)
+    _,actual=Rich(x[idx],table)
     expected=integrate.romb(y,dx)
     assert actual == expected
     i+=1
