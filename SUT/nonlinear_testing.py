@@ -5,7 +5,7 @@ import numpy as np
 from nonlinear import NonLinearSolver
 
 
-@given(s=text())
+@given(
 @example([])
 def test_NonLinearSolver(s):
     pass    
