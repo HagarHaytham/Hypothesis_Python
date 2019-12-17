@@ -43,6 +43,6 @@ def test_SolveSOR(l,x):
     pass    
 
 if __name__ == "__main__":
-    # test_diag_dominant()
+    test_diag_dominant()
     test_SolveGaussSeidel()
     test_SolveSOR()
