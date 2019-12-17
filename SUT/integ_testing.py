@@ -31,7 +31,7 @@ def test_trapezoidal(xs,n):
     if a != b:
         Xs.append(b)
         Ys.append(fx(b))
-    print("x & y", Xs, Ys)
+    # print("x & y", Xs, Ys)
     trap = np.trapz(Ys, Xs)
     try: 
         result, _ = trapezoidal(func, a, b, n)
@@ -41,6 +41,7 @@ def test_trapezoidal(xs,n):
     
     result = "{0:.4f}".format(result)
     trap = "{0:.4f}".format(trap)
+    # print("result >", result , trap)
     assert  result == trap
 
 
