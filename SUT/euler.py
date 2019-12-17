@@ -28,18 +28,18 @@ def Euler(s,x0,y0,xf,n):
  for i in range ( n ) :
     print ( x [ i ] , y [ i ] )
 
- plt.plot(x,y,'o')
- plt.xlabel (" Value of x " )
- plt.ylabel (" Value of y " )
- plt.title ("Approximate S ol u ti o n with Forward Euler ’ s Method " )
- plt.show ( )
+#  plt.plot(x,y,'o')
+#  plt.xlabel (" Value of x " )
+#  plt.ylabel (" Value of y " )
+#  plt.title ("Approximate S ol u ti o n with Forward Euler ’ s Method " )
+#  plt.show ( )
 #s="-y+sin(x)"
 #x0 = 0
 #y0 = 1
 #xf = 10
 #n = 101
 #Euler(s,x0,y0,xf,n)
-
+ return y 
 #----------------------------------------------------------------------
 
 def heun(s,x0,y0,h):
