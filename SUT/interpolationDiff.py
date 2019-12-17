@@ -12,6 +12,7 @@ Number of Outputs (2):
 import numpy as np
 import os.path
 import sys
+import copy
 
 x = []
 y = []
@@ -99,13 +100,13 @@ def newtonGeneral(workingList, workingListInv, value, order, ApproxError = 1e-8)
 def differentiate(value, isX, order, AppErr):
     global x, y
     if isX:
-        workingList = x.copy()
-        workingListInv = y.copy()
+        workingList = copy.copy(x)
+        workingListInv = copy.copy(y)
         notation = "x"
         notationInv = "y"
     else:
-        workingList = y.copy()
-        workingListInv = x.copy()
+        workingList = copy.copy(y)
+        workingListInv = copy.copy(x)
         notation = "y"
         notationInv = "x"
 
@@ -113,6 +114,10 @@ def differentiate(value, isX, order, AppErr):
 
 
 def execute():
+    if order >= n:
+        raise ValueError("Order should be < number of points")
+
+    differentiate(float(value), True, int(order), float(Apperr))
 
 #---------Inputs----------------------------------
 '''
@@ -135,12 +140,7 @@ def execute():
     print("Approximation Error for Stopping Criteria ")
     Apperr = input()
 '''
-#--------------------------------------------------------------------
-
-    if order >= n:
-        raise ValueError("Order should be < number of points")
-
-    differentiate(float(value), True, int(order), float(Apperr))
+    
 
 
 def main():
