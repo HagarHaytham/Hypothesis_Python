@@ -9,11 +9,15 @@ from scipy.integrate import odeint
 @st.composite 
 def generate_input(draw):
     initial_x= draw(st.floats(min_value = 0 ,max_value = 10))
+    
     initial_y=draw (st.floats(min_value = 0 ,max_value = 10))
+    
     intervals=draw(st.integers(min_value = 2 ,max_value = 10))
-    stopping_x=draw(st.floats(min_value = 0 ,max_value = 10))
+    
+    
+    final_x=draw(st.floats(min_value = 0 ,max_value = 10))
     exp =draw(st.from_regex("([+-][1-9]{1,1}([m][x][p][1-9]{1,1})([m][c][o][s][(][x][)]){0,1}([m][s][i][n][(][x][)]){0,1}){1,2}([+-][1-9]{1,1}([m][y][p][1-9]{1,1})([m][c][o][s][(][y][)]){0,1}([m][s][i][n][(][y][)]){0,1}){1,2}",fullmatch=True))
-    return initial_x,initial_y,intervals,stopping_x,exp
+    return initial_x,initial_y,intervals,final_x,exp
 
 @given(data = generate_input())
 def test_Euler(data):
@@ -21,20 +25,28 @@ def test_Euler(data):
     initial_x = data[0]
     initial_y = data[1]
     intervals = data[2]
-    stopping_x= data[3]
+    final_x= data[3]
     exp = data[4]
     exp = exp.replace('m','*')
     exp = exp.replace('p','**')
     exp =exp [1:len(exp)]     
     print(str(exp))
     f = sympy.sympify(exp)
+    
+    
+    
     # print(f)
-    assume(stopping_x > initial_x)
+    
+    assume(final_x > initial_x)
+    
     assume(intervals > 0)
-    y1 = Euler(exp,initial_x,initial_y,stopping_x,intervals)
+    
+    
+    
+    y1 = Euler(exp,initial_x,initial_y,final_x,intervals)
     t=[]
     last= initial_x
-    step = (stopping_x - initial_x )/intervals
+    step = (final_x - initial_x )/intervals
     for i in range(intervals):
         last+=step
         t.append(last)
@@ -44,10 +56,10 @@ def test_Euler(data):
     # print(f)
     y2,_dict = odeint(fx,initial_y,np.asarray(t))
     # print(len(y1))
-    # print(exp,initial_x,initial_y,stopping_x,intervals)
-    print(len(y1),len(y2))
+    # print(exp,initial_x,initial_y,final_x,intervals)
+    # print(len(y1),len(y2))
     
-    print(y2)
+    # print(y2)
     # assert len(y1) == len(y2)
         # print(y1[i][0],y2[i][0])
     # assert item1 == y1[0]

@@ -9,7 +9,12 @@ from sympy.utilities.lambdify import lambdify, implemented_function
 
 @st.composite 
 def generate_list(draw):
+    
+    
     Xs = draw(st.lists(st.decimals(0,10,places=2), min_size=4, max_size=4, unique=True).map(sorted))
+
+
+
     Ys = draw(st.lists(st.decimals(0,10,places=2), min_size=4, max_size=4, unique=True).map(sorted))
     Xs = [float(i) for i in Xs]
     Ys = [float(i) for i in Ys]

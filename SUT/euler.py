@@ -26,7 +26,7 @@ def Euler(s,x0,y0,xf,n):
  for i in range ( 1 , n ) :
     y [i]= delta * F.evalf(subs={z:x[i-1], w:y[i-1]})+y[i-1]
  for i in range ( n ) :
-    print ( x [ i ] , y [ i ] )
+    # print ( x [ i ] , y [ i ] )
 
 #  plt.plot(x,y,'o')
 #  plt.xlabel (" Value of x " )
@@ -39,7 +39,7 @@ def Euler(s,x0,y0,xf,n):
 #xf = 10
 #n = 101
 #Euler(s,x0,y0,xf,n)
- return y 
+    return y 
 #----------------------------------------------------------------------
 
 def heun(s,x0,y0,h):
