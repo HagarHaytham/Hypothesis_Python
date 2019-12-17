@@ -21,7 +21,6 @@ def generate_input(draw):
 
 @given(data = generate_input())
 def test_Euler(data):
-    # print('jjjjjjjjjjjjj')
     initial_x = data[0]
     initial_y = data[1]
     intervals = data[2]
@@ -30,23 +29,15 @@ def test_Euler(data):
     exp = exp.replace('m','*')
     exp = exp.replace('p','**')
     exp =exp [1:len(exp)]     
-    print(str(exp))
+    # print(str(exp))
     f = sympy.sympify(exp)
-    
-    
-    
-    # print(f)
-    
     assume(final_x > initial_x)
-    
     assume(intervals > 0)
-    
-    
-    
     y1 = Euler(exp,initial_x,initial_y,final_x,intervals)
     t=[]
-    last= initial_x
+    last = initial_x
     step = (final_x - initial_x )/intervals
+    # print(step)
     for i in range(intervals):
         last+=step
         t.append(last)
@@ -54,21 +45,17 @@ def test_Euler(data):
     y = sympy.symbols('y')
     fx = lambdify([x,y] , f)
     # print(f)
-    y2,_dict = odeint(fx,initial_y,np.asarray(t))
-    # print(len(y1))
+    y2 = odeint(fx,initial_y,np.asarray(t))
+    # print(len(result))
     # print(exp,initial_x,initial_y,final_x,intervals)
     # print(len(y1),len(y2))
-    
-    # print(y2)
-    # assert len(y1) == len(y2)
-        # print(y1[i][0],y2[i][0])
-    # assert item1 == y1[0]
-    # assert item2 == y1[1]
-        
+    for i in range(len(y2)):
+        print(y2[i][0] , y1[i])
+        assert y2[i][0] == y1[i]
+       
     
 # @given()
 # def test_heun():
 #     pass
 if __name__ == "__main__":
     test_Euler()
-    # print('kkkkkkkkkkkk')

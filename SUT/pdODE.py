@@ -219,21 +219,21 @@ def PredictorCorrector(Xpoints,Ypoints,equation,technique,xs,ApproxError):
     ys=[]
     errors=[]
     finalerror=0
-    if technique=="Milne's":
+    if technique== 0:
         ys,errors,finalerror=Milnes(Xpoints,Ypoints,equation,xs,ApproxError) 
-    elif technique=="AdamsBashforth":
+    elif technique== 1 :
         ys,errors,finalerror=AdamsBashforth(Xpoints,Ypoints,equation,xs,ApproxError)
-    elif technique=="AdamsMoulton":
+    elif technique== 2:
         ys , errors,finalerror =AdamsMoulton(Xpoints,Ypoints,equation,xs,ApproxError)
-    elif technique=="Adams":
+    elif technique== 3:
         ys, errors, finalerror = Adams(Xpoints,Ypoints,equation,xs,ApproxError)
     finalX=Xpoints+xs
     finalY=Ypoints+ys
-    plt.plot(finalX,finalY)
-    plt.xlabel('X Axis')
-    plt.ylabel('Y Axis')
-    plt.title('The ODE')
-    plt.show()
+    # plt.plot(finalX,finalY)
+    # plt.xlabel('X Axis')
+    # plt.ylabel('Y Axis')
+    # plt.title('The ODE')
+    # plt.show()
 
     return ys ,errors,finalerror
 
