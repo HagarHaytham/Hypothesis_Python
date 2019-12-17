@@ -20,7 +20,7 @@ def get_table(f, a, b, n):
         fx = f(x)
     else:
         fx = np.array(f)
-    print(fx)
+    # print(fx)
     if (fx.size != n + 1):
         raise ValueError("Error in Table Dimensions! x.shape != fx.shape")
     return x, fx
@@ -51,7 +51,6 @@ def trapezoidal(f, a, b, n):
     fx[1:n] = fx[1:n] * 2
     I = np.sum(fx) * h / 2
     return I, np.abs(error)
-
 
 # parameters:
 # f: either a table (with f[i] = f(x_i), the x_i are n samples between a, b) or a function.
