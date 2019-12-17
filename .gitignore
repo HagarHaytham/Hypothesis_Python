@@ -1,1 +1,3 @@
-__pycache__/*
+
+SUT/__pycache__/*
+SUT/.hypothesis/*
