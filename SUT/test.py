@@ -34,3 +34,5 @@ def test_trapezoidal(xs,n):
     # print("result >", result , trap)
     assert  result == trap
 
+@given(s = st.text())
+def test()
